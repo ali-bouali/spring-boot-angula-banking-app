@@ -1,0 +1,46 @@
+<div class="p-3">
+  <h2>My profile</h2>
+  <div class="alert alert-success" role="alert" *ngIf="successMsg">
+    <p>{{successMsg}}</p>
+  </div>
+  <div class="d-flex flex-row justify-content-between">
+    <div class="card p-3 col-6 me-1">
+      <h3>Personal info</h3>
+      <div class="mb-3">
+        <label for="firstname" class="form-label">Firstname</label>
+        <input [(ngModel)]="userDto.firstname" type="email" class="form-control" id="firstname" placeholder="Firstname">
+      </div>
+      <div class="mb-3">
+        <label for="lastname" class="form-label">Lastname</label>
+        <input [(ngModel)]="userDto.lastname" type="email" class="form-control" id="lastname" placeholder="Lastname">
+      </div>
+      <div class="mb-3">
+        <label for="iban" class="form-label">Email</label>
+        <input [(ngModel)]="userDto.email" type="email" class="form-control" id="iban" placeholder="mail@email.com" disabled>
+      </div>
+    </div>
+    <div class="card p-3 col-6">
+      <h3>Address</h3>
+      <div class="mb-3">
+        <label for="street" class="form-label">Street</label>
+        <input type="email" class="form-control" id="street" placeholder="Street">
+      </div>
+      <div class="mb-3">
+        <label for="house-number" class="form-label">House number</label>
+        <input type="email" class="form-control" id="house-number" placeholder="House number">
+      </div>
+      <div class="mb-3">
+        <label for="city" class="form-label">City</label>
+        <input type="email" class="form-control" id="city" placeholder="City">
+      </div>
+    </div>
+  </div>
+  <div class="d-flex justify-content-end mt-3">
+    <button type="button" class="btn btn-link">
+      <em class="fas fa-times"></em>&nbsp;Cancel
+    </button>
+    <button (click)="save()" type="button" class="btn btn-danger">
+      <em class="fas fa-save"></em>&nbsp;Save
+    </button>
+  </div>
+</div>

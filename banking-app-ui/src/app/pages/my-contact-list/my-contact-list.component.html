@@ -1,0 +1,57 @@
+<div class="p-3">
+  <h2>My contact list</h2>
+  <div class="d-flex justify-content-end mb-3">
+    <a [routerLink]="'/user/new-contact'" class="btn btn-success">
+      <em class="fas fa-plus"></em>&nbsp;New contact
+    </a>
+  </div>
+  <div>
+    <table class="table table-bordered">
+      <thead>
+      <tr>
+        <th scope="col">Firstname</th>
+        <th scope="col">Lastname</th>
+        <th scope="col">Email</th>
+        <th scope="col">IBAN</th>
+        <th scope="col">Actions</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let ct of contacts">
+        <th>{{ct.firstname}}</th>
+        <td>{{ct.lastname}}</td>
+        <td>{{ct.email}}</td>
+        <td>{{ct.iban}}</td>
+        <td class="cursor-pointer">
+          <em (click)="update(ct.id)" class="fas fa-edit text-primary"></em>
+          &nbsp;|&nbsp;
+          <em (click)="userIdToDelete = ct.id" class="fas fa-trash text-danger" data-bs-toggle="modal" data-bs-target="#staticBackdrop"></em>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="staticBackdropLabel">Confirm!</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        Would you really want to delete this data?
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-link" (click)="userIdToDelete = -1" data-bs-dismiss="modal">
+          <em class="fas fa-times"></em>&nbsp;Cancel
+        </button>
+        <button (click)="delete()" type="button" class="btn btn-danger" data-bs-dismiss="modal">
+          <em class="fas fa-trash"></em>&nbsp;Delete
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,41 @@
+<div class="p-3">
+  <h2>New transaction</h2>
+  <div class="alert alert-danger" role="alert" *ngIf="errorMessages.length">
+    <p *ngFor="let msg of errorMessages">{{msg}}</p>
+  </div>
+  <div class="card p-3">
+    <h3>Your account balance: {{accountBalance}}€</h3>
+    <div class="mb-3">
+      <label class="form-label">Transaction type</label>
+      <select [(ngModel)]="transaction.type" class="form-select" aria-label="Default select example">
+        <option selected>Choose a transaction type</option>
+        <option [ngValue]="'DEPOSIT'">DEPOSIT</option>
+        <option [ngValue]="'TRANSFERT'">TRANSFER</option>
+      </select>
+    </div>
+    <div class="mb-3" *ngIf="transaction.type === 'TRANSFERT'">
+      <label class="form-label">Choose a contact</label>
+      <select [(ngModel)]="transaction.destinationIban" class="form-select" aria-label="Default select example">
+        <option [ngValue]="''">Select a contact from the list</option>
+        <option *ngFor="let ct of contacts" [ngValue]="ct.iban">{{ ct.firstname + ' ' + ct.lastname }}</option>
+      </select>
+    </div>
+    <div class="mb-3" *ngIf="transaction.type">
+      <label for="amount" class="form-label">Amount</label>
+      <input [(ngModel)]="transaction.amount" type="number" class="form-control" id="amount" placeholder="Exp: 500€">
+    </div>
+    <div class="mb-3" *ngIf="transaction.type === 'TRANSFERT'">
+      <label for="iban" class="form-label">IBAN</label>
+      <input [(ngModel)]="transaction.destinationIban" type="text" class="form-control" id="iban" placeholder="AB12 1234 1234 1234">
+    </div>
+    <div class="d-flex justify-content-end">
+      <button (click)="cancel()" type="button" class="btn btn-link">
+        <em class="fas fa-times"></em>&nbsp;Cancel
+      </button>
+      <button (click)="save()" type="button" class="btn btn-danger">
+        <em class="fas fa-save"></em>&nbsp;Save
+      </button>
+    </div>
+
+  </div>
+</div>
